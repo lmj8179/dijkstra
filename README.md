@@ -1,11 +1,11 @@
 # Dijkstra
 
-A implementation of algorithm dijkstra for search a lowest branch on graph.
+A implementation of Dijkstra's Algorithm for search the shortest path in a graph.
 
 ## Instalation and Usage
 
-Open terminal, i suppose you are using a Linux-distro or you have the `automake` installed on Windows, so execute only:
-  
+I suppose you are using a Linux-distro or you have the `automake` installed on Windows. Then open a terminal instance and execute only:
+
   * git clone https://github.com/ryukinix/dijkstra
   * cd dijkstra/C
   * make
@@ -21,7 +21,7 @@ Open terminal, i suppose you are using a Linux-distro or you have the `automake`
 
 ## History
 
-I lost my mind. I even know what are doing here.
+I lost my mind. I even not know what are doing here.
 
 ## Credits
 
