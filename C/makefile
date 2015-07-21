@@ -6,7 +6,7 @@ GCC = gcc
 LFLAGS = -Wall -o
 
 # the build target.
-TARGET =  djikstra
+TARGET =  dijkstra
 
 all: 
 	$(GCC) $(LFLAGS) $(TARGET).out $(TARGET).c
