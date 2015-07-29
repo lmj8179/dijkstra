@@ -1,17 +1,18 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#   Made by Gilmar Soares
+#   Made by Gilmar Soares @ wwww.github.com/linuxsoares
 
 from pprint import pprint
 
-def dijkstra(graph,start,target):
+
+def dijkstra(graph, start, target):
     inf = 0
     for u in graph:
-        for v ,w in graph[u]:
-           inf = inf + w
-    dist = dict([(u,inf) for u in graph])
-    prev = dict([(u,None) for u in graph])
+        for v, w in graph[u]:
+            inf = inf + w
+    dist = dict([(u, inf) for u in graph])
+    prev = dict([(u, None) for u in graph])
     q = graph.keys()
     dist[start] = 0
 
@@ -21,7 +22,7 @@ def dijkstra(graph,start,target):
     while q != []:
         u = min(q, key=x)
         q.remove(u)
-        for v,w in graph[u]:
+        for v, w in graph[u]:
             alt = dist[u] + w
             if alt < dist[v]:
                 dist[v] = alt
@@ -34,28 +35,29 @@ def dijkstra(graph,start,target):
         temp = prev[temp]
     trav.reverse()
     trav.append(target)
-    return ' -> '.join(trav),dist[target]
+    return ' -> '.join(trav), dist[target]
 graph = {
-    'A' : [('B',5), ('D', 5), ('E', 7)],
-    'B' : [('C', 4)],
-    'C' : [('D', 8), ('E', 2)],
-    'D' : [('C', 8), ('E', 6)],
-    'E' : [('B', 3)],
+    'A': [('B', 5), ('D', 5), ('E', 7)],
+    'B': [('C', 4)],
+    'C': [('D', 8), ('E', 2)],
+    'D': [('C', 8), ('E', 6)],
+    'E': [('B', 3)],
     }
+
 
 def main():
     soma = 0
 
     primeiro = ['A', 'B', 'C']
-    segundo  = ['A', 'D']
+    segundo = ['A', 'D']
     terceiro = ['A', 'D', 'C']
-    quarto   = ['A', 'E', 'B', 'C', 'D']
-    quinto   = ['A', 'E', 'D']
-    sexto    = ['C', 'D', 'C']
-    setimo   = ['A', 'C']
-    oitavo   = []
-    nono     = []
-    decimo   = []
+    quarto = ['A', 'E', 'B', 'C', 'D']
+    quinto = ['A', 'E', 'D']
+    sexto = ['C', 'D', 'C']
+    setimo = ['A', 'C']
+    oitavo = []
+    nono = []
+    decimo = []
 
     rota = setimo
 
@@ -63,7 +65,7 @@ def main():
             if (i < len(rota)):
                 inicio = rota[i]
                 fim = rota[(i + 1) if i < (len(rota)) else i]
-                traverse, dist = dijkstra(graph,inicio,fim)
+                traverse, dist = dijkstra(graph, inicio, fim)
                 soma += dist
 
     print 'CUSTO DA ROTA --> ' + str(soma)
