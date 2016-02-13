@@ -1,9 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 #   Made by Gilmar Soares @ wwww.github.com/linuxsoares
-
-from pprint import pprint
 
 
 def dijkstra(graph, start, target):
@@ -13,14 +11,11 @@ def dijkstra(graph, start, target):
             inf = inf + w
     dist = dict([(u, inf) for u in graph])
     prev = dict([(u, None) for u in graph])
-    q = graph.keys()
+    q = [x for x in graph.keys()]
     dist[start] = 0
 
-    def x(v):
-        return dist[v]
-
     while q != []:
-        u = min(q, key=x)
+        u = min(q, key=lambda x: dist[x])
         q.remove(u)
         for v, w in graph[u]:
             alt = dist[u] + w
@@ -36,50 +31,40 @@ def dijkstra(graph, start, target):
     trav.reverse()
     trav.append(target)
     return ' -> '.join(trav), dist[target]
-graph = {
-    'A': [('B', 5), ('D', 5), ('E', 7)],
-    'B': [('C', 4)],
-    'C': [('D', 8), ('E', 2)],
-    'D': [('C', 8), ('E', 6)],
-    'E': [('B', 3)],
-    }
 
 
 def main():
-    soma = 0
+    graph = {
+        'A': [('B', 5), ('D', 5), ('E', 7)],
+        'B': [('C', 4)],
+        'C': [('D', 8), ('E', 2)],
+        'D': [('C', 8), ('E', 6)],
+        'E': [('B', 3)],
+    }
 
-    primeiro = ['A', 'B', 'C']
-    segundo = ['A', 'D']
-    terceiro = ['A', 'D', 'C']
-    quarto = ['A', 'E', 'B', 'C', 'D']
-    quinto = ['A', 'E', 'D']
-    sexto = ['C', 'D', 'C']
-    setimo = ['A', 'C']
-    oitavo = []
-    nono = []
-    decimo = []
+    routes = [
+        ['A', 'B', 'C'],
+        ['A', 'D'],
+        ['A', 'D', 'C'],
+        ['A', 'E', 'B', 'C', 'D'],
+        ['A', 'E', 'D'],
+        ['C', 'D', 'C'],
+        ['A', 'C'],
+        ['B', 'E'],
+    ]
 
-    rota = setimo
-
-    for i in range(len(rota) - 1):
-            if (i < len(rota)):
-                inicio = rota[i]
-                fim = rota[(i + 1) if i < (len(rota)) else i]
-                traverse, dist = dijkstra(graph, inicio, fim)
-                soma += dist
-
-    print 'CUSTO DA ROTA --> ' + str(soma)
+    print(":: Dijkstra's Algorithm Evaluation")
+    for route in routes:
+        soma = 0
+        print('Route: {}'.format('->'.join(route)))
+        for i in range(len(route) - 1):
+                if (i < len(route)):
+                    inicio = route[i]
+                    fim = route[(i + 1) if i < (len(route)) else i]
+                    traverse, dist = dijkstra(graph, inicio, fim)
+                    print("{}: {}".format(traverse, dist))
+                    soma += dist
+        print('Route cost --> {}\n'.format(soma))
 
 if __name__ == '__main__':
     main()
-
-# Output #1: 9
-# Output #2: 5
-# Output #3: 13
-# Output #4: 22
-# Output #5: NO SUCH ROUTE
-# Output #6: 2
-# Output #7: 3
-# Output #8: 9
-# Output #9: 9
-# Output #10: 7
