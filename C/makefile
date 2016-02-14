@@ -8,7 +8,9 @@ LFLAGS = -Wall -o
 # the build target.
 TARGET =  dijkstra
 
-all: 
+all:
 	$(GCC) $(LFLAGS) $(TARGET).out $(TARGET).c
-clean: 
+clean:
 	rm *.out
+run:
+	./$(TARGET).out
